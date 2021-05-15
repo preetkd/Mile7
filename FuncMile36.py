@@ -141,7 +141,7 @@ def CustID_Fraud(dft):
     FraudDf['Fraud'] = 'F'
 
 
-    custDU = pd.read_csv("C:/Users/Harpreet/Desktop/CAPSTONE/Mile2/liveCustomerList.csv")
+    custDU = pd.read_csv("liveCustomerList.csv")
     custDUp = custDU.apply(lambda x: x.astype(str).str.upper())
 
 
@@ -290,7 +290,7 @@ def image_verify(cID):
         output_df.loc[output_df.face_id == faceid, "verifiedID"] = match
 
     print('**************output_df******', output_df)
-    output_df.to_csv('C:/Users/Harpreet/Desktop/CAPSTONE/Mile7/conf.csv')
+    output_df.to_csv('conf.csv')
 
     image_d = output_df[output_df.verifiedID == 1]
 
@@ -425,7 +425,7 @@ def main7(urlpath):
 
     outdf = payday_fn(paydf)
 
-    outdf.to_csv('C:/Users/Harpreet/Desktop/CAPSTONE/Mile7/' + path, index=False)
+    outdf.to_csv(path, index=False)
 
     flname = path.split('.')[0]
 
