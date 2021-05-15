@@ -19,8 +19,10 @@ from DateFnctions import  MonthlyPay, BiWeeklyPay, ThreeWeeklyPay, DefaultPay,We
 
 
 def FileDwnLdFun(path):
-    shutil.rmtree('C:/Users/Harpreet/Desktop/CAPSTONE/Mile7/Images')  # Folder Cleaned
-
+    try:
+        shutil.rmtree("Images")  # Folder Cleaned
+    except:
+        print("Images folder does not exist")
 
     zipurl = path
     # Download the file from the URL
