@@ -1,8 +1,12 @@
 from flask import Flask,render_template, request, flash, redirect, url_for, send_file
 
 import sys
+import threading
+import asyncio
+
 from FuncMile36 import main7
 
+print("In flask global level: {threading.current_thread().name}")
 app = Flask(__name__)
 
 @app.route('/test')
@@ -19,7 +23,10 @@ def viewentries():
             flash('URL is required!')
         else:
             print('url entered is ', url)
-            file_nm = main7(url)
+            print("Inside flask function: {threading.current_thread().name}")
+            asyncio.set_event_loop(asyncio.new_event_loop())
+            loop = asyncio.get_event_loop()
+            file_nm = loop.run_until_complete(main7(url))
             print('called function return_csv - check for created csv file', file_nm)
             redirect_url=file_nm+"/getCSV"
             return redirect(redirect_url)

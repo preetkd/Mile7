@@ -411,7 +411,7 @@ def payday_fn(imdf):
     return finalDF
 
 
-def main7(urlpath):
+async def main7(urlpath):
 
     path = FileDwnLdFun(urlpath)
 
