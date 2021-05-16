@@ -1,1 +1,1 @@
-web: gunicorn Hello:app --max-requests 2000
+web: gunicorn Hello:app --timeout 3000
