@@ -7,7 +7,7 @@ from ctypes import c_char_p
 
 app = Flask(__name__)
 manager = Manager()
-file_name = manager.Value(c_char_p, "1234")
+file_name = manager.Value(c_char_p, "waiting")
 @app.route('/test')
 def hello_world():
     return 'Hello, World!'
@@ -22,6 +22,7 @@ def viewentries():
             flash('URL is required!')
         else:
             print('url entered is ', url)
+            file_name.value = "waiting"
             inp_arg = (url,file_name)
             heavy_process = Process(target=main8, args=(inp_arg,))
             heavy_process.start()
@@ -32,7 +33,7 @@ def viewentries():
 
     return render_template('index.html')  #variable=usernames_list
 
-@app.route("/<int:ofile>/getCSV")
+@app.route("/<ofile>/getCSV")
 def getPlotCSV(ofile):
     return render_template('excel.html', inp_url = " ", csv = ofile )
 

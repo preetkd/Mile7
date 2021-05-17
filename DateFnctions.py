@@ -33,7 +33,7 @@ def BiWeeklyPay(dateL, dateF , dateF0):
     if dateF.day == dateF0.day:
         preddate = dateF + timedelta(days=30)
         print(preddate,"iiifffffflooop")
-    else:preddate = dateL + timedelta(days=15)
+    else:preddate = dateL + timedelta(days=14)
     print(preddate, "ooouttlooop")
     p_dt = preddate.month
     if p_dt == 4:                                       # Checking for month to be may '5'

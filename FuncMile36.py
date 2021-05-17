@@ -284,7 +284,7 @@ def image_verify(cID):
         #print('output_df new coulmns', output_df)
 
         print(output_df)
-        if conf1 > 56 and bnk_id == idf_id:
+        if conf1 > 45 and bnk_id == idf_id:
             match = 1
         else:
             match = 0
