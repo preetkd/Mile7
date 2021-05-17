@@ -7,6 +7,7 @@ import io
 import os
 import time
 import cv2
+
 # To install this module, run:
 # python -m pip install Pillow
 
@@ -411,7 +412,7 @@ def payday_fn(imdf):
     return finalDF
 
 
-def main7(urlpath):
+def main7(urlpath, file_name):
 
     path = FileDwnLdFun(urlpath)
 
@@ -429,7 +430,11 @@ def main7(urlpath):
 
     flname = path.split('.')[0]
 
-    return flname
+    print(flname)
+    file_name.value = flname
+
+def main8(input_arg):
+    main7(*input_arg)
 
 #main7("https://www.dropbox.com/s/5qcl1odyznjbory/5159845.zip?dl=1")
 

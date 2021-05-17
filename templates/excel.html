@@ -21,7 +21,61 @@
 <div class="container-fluid">
     <label class="form-label" for="op_csv"> Download CSV File: </label><br>
     <textarea name="op_csv" id="op_csv" placeholder="Post content">{{csv}}</textarea><br>
-    <button class = "btn btn-primary" onclick="location.href = '/{{csv}}/downloadCSV';" id="myButton" >Download</button>
+    <button class = "btn btn-primary" onclick="location.href = '/{{csv}}/downloadCSV';" id="myButton" disabled="disabled" >Download</button>
+    <script>
+        var filenm = ""
+
+        function getVal(){
+            console.log("Still waiting");
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "/getFilename", false ); // false for synchronous request
+            xmlHttp.send( null );
+            console.log("Got value");
+            console.log(xmlHttp.responseText);
+            console.log("parsing json");
+            var obj = JSON.parse(xmlHttp.responseText);
+            console.log(obj.filenm);
+            filenm = obj.filenm;
+        }
+
+        let timerId = setInterval(getVal, 10000);
+
+
+        function stopPolling() {
+            if(filenm != "1234"){
+                clearInterval(timerId);
+                console.log("stop");
+                const button = document.getElementById('myButton');
+                document.getElementById('op_csv').value=filenm;
+                var linkloc="location.href = '/"+filenm+"/downloadCSV';";
+                button.setAttribute('onclick',linkloc)
+                button.removeAttribute("disabled");
+            } else {
+                console.log("process still running, increase time for timeout");
+            }
+        }
+
+        setTimeout(stopPolling, 120000);
+
+        function getVal2(){
+            var test="1234"
+            while(true){
+                console.log("Still waiting");
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", "/getFilename", false ); // false for synchronous request
+                xmlHttp.send( null );
+                console.log("Got value");
+                console.log(xmlHttp.responseText);
+                console.log("parsing json");
+                var obj = JSON.parse(xmlHttp.responseText);
+                console.log(obj.filenm);
+                if(obj.filenm!="1234"){
+                    break;
+                }
+            }
+        }
+    </script>
+
 </div>
 
 </body>
